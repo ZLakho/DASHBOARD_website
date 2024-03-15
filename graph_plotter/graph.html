@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>TechSphere Core</title>
+  <link rel="stylesheet" href="Gstyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.1.0/math.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li>
+          <a href="#" class="logo">
+            <img src="../admin.png">
+            <span class="nav-item">Admin</span>
+          </a>
+        </li>
+        <li>
+          <a href="../extra.html">
+            <i class="fas fa-menorah"></i>
+            <span class="nav-item">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="../url_shortener/url.html">
+            <i class="fas fa-link"></i>
+            <span class="nav-item">URL Shortener</span>
+          </a>
+        </li>
+        <li>
+          <a href="../codeeditor/code.html">
+            <i class="fas fa-code"></i>
+            <span class="nav-item">Code Editor</span>
+          </a>
+        </li>
+        <li>
+          <a href="../cv_maker/resume.html">
+            <i class="fas fa-sun"></i>
+            <span class="nav-item">Resume Builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="../todolist/todolist.html">
+            <i class="fas fa-list"></i>
+            <span class="nav-item">To-Do List</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main">
+      <div class="container3">
+        <h1>Graph Plotter</h1>
+        <div>
+          <label for="functionInput">Enter a mathematical function:</label>
+          <input type="text" id="functionInput" placeholder="e.g., sin(x)" />
+          <button onclick="plotGraph()"
+            style="border: 5%; background-color: rgb(200, 159, 37); width: 25%; border-radius: 12px;">Plot
+            Graph</button>
+        </div>
+        <canvas id="graphCanvas" width="600px" height="300px"></canvas>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="graph.js"></script>
+</body>
+
+</html>

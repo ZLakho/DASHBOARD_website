@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TechSphere Core</title>
+  <link rel="stylesheet" href="Calculator.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li>
+          <a href="#" class="logo">
+            <img src="/admin.png">
+            <span class="nav-item">Admin</span>
+          </a>
+        </li>
+        <li>
+          <a href="../extra.html">
+            <i class="fas fa-menorah"></i>
+            <span class="nav-item">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="../url_shortener/url.html">
+            <i class="fas fa-link"></i>
+            <span class="nav-item">URL Shortener</span>
+          </a>
+        </li>
+        <li>
+          <a href="../codeeditor/code.html">
+            <i class="fas fa-code"></i>
+            <span class="nav-item">Code Editor</span>
+          </a>
+        </li>
+        <li>
+          <a href="../cv_maker/resume.html">
+            <i class="fas fa-sun"></i>
+            <span class="nav-item">Resume Builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="../todolist/todolist.html">
+            <i class="fas fa-list"></i>
+            <span class="nav-item">To-Do List</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main">
+      <div id="calculator">
+        <div>
+          <h1> Scientific Calculator</h1>
+        </div>
+        <input type="text" id="display" disabled>
+        <div>
+          <button class="button" onclick="sinFunction()">sin</button>
+          <button class="button" onclick="cosFunction()">cos</button>
+          <button class="button" onclick="tanFunction()">tan</button>
+          <button class="button orange" onclick="appendToDisplay('PI')">π</button>
+        </div>
+
+        <div>
+          <button class="button" onclick="squareRoot()">√</button>
+          <button class="button" onclick="appendToDisplay('(')">(</button>
+          <button class="button" onclick="appendToDisplay(')')">)</button>
+          <button class="button orange double" onclick="power()">x^y</button>
+        </div>
+
+        <div>
+          <button class="button" onclick="appendToDisplay('7')">7</button>
+          <button class="button" onclick="appendToDisplay('8')">8</button>
+          <button class="button" onclick="appendToDisplay('9')">9</button>
+          <button class="button orange" onclick="appendToDisplay('/')">/</button>
+        </div>
+
+        <div>
+          <button class="button" onclick="appendToDisplay('4')">4</button>
+          <button class="button" onclick="appendToDisplay('5')">5</button>
+          <button class="button" onclick="appendToDisplay('6')">6</button>
+          <button class="button orange" onclick="appendToDisplay('*')">*</button>
+        </div>
+
+        <div>
+          <button class="button" onclick="appendToDisplay('1')">1</button>
+          <button class="button" onclick="appendToDisplay('2')">2</button>
+          <button class="button" onclick="appendToDisplay('3')">3</button>
+          <button class="button orange" onclick="appendToDisplay('-')">-</button>
+        </div>
+
+        <div>
+          <button class="button" onclick="appendToDisplay('0')">0</button>
+          <button class="button" onclick="appendToDisplay('.')">.</button>
+          <button class="button orange" onclick="calculate()">=</button>
+          <button class="button orange" onclick="appendToDisplay('+')">+</button>
+        </div>
+      </div>
+    </section>
+ </div>
+  <script src="calculator.js"></script>
+</body>
+
+</html>

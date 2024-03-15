@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>TechSphere Core</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li>
+          <a href="#" class="logo">
+            <img src="/admin.png">
+            <span class="nav-item">Admin</span>
+          </a>
+        </li>
+        <li>
+          <a href="../extra.html">
+            <i class="fas fa-menorah"></i>
+            <span class="nav-item">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="../url_shortener/url.html">
+            <i class="fas fa-link"></i>
+            <span class="nav-item">URL Shortener</span>
+          </a>
+        </li>
+        <li>
+          <a href="../codeeditor/code.html">
+            <i class="fas fa-code"></i>
+            <span class="nav-item">Code Editor</span>
+          </a>
+        </li>
+        <li>
+          <a href="../cv_maker/resume.html">
+            <i class="fas fa-sun"></i>
+            <span class="nav-item">Resume Builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="../todolist/todolist.html">
+            <i class="fas fa-list"></i>
+            <span class="nav-item">To-Do List</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main">
+      <div id="todo-container">
+        <h2>Your TO-DO LIST</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button id="button1" onclick="addTask()">Add Task</button>
+        <ul id="task-list"></ul>
+      </div>
+
+    </section>
+  </div>
+  <script>
+    const initialTasks = [
+      { text: "Task 1", completed: false },
+      { text: "Task 2", completed: true },
+    ];
+
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || initialTasks;
+
+    function renderTasks() {
+      const taskList = document.getElementById("task-list");
+      taskList.innerHTML = "";
+
+      tasks.forEach((task, index) => {
+        const taskItem = document.createElement("li");
+        taskItem.className = "task";
+        taskItem.innerHTML = `
+          <input type="checkbox" onchange="toggleTask(${index})" ${task.completed ? 'checked' : ''}>
+          <span>${task.text}</span>
+          <button class="delete-btn" onclick="deleteTask(${index})">Delete</button>
+        `;
+        taskList.appendChild(taskItem);
+      });
+    }
+
+    function addTask() {
+      const taskInput = document.getElementById("taskInput");
+      const newTask = { text: taskInput.value, completed: false };
+      tasks.push(newTask);
+      saveTasks();
+      renderTasks();
+      taskInput.value = "";
+    }
+
+    function toggleTask(index) {
+      tasks[index].completed = !tasks[index].completed;
+      saveTasks();
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      saveTasks();
+      renderTasks();
+    }
+
+    function saveTasks() {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    renderTasks();
+  </script>
+
+</body>
+
+</html>

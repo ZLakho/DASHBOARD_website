@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>TechSphere Core</title>
+  <link rel="stylesheet" href="onemore.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li>
+          <a href="#" class="logo">
+            <img src="/admin.png">
+            <span class="nav-item">Admin</span>
+          </a>
+        </li>
+        <li>
+          <a href="../extra.html">
+            <i class="fas fa-menorah"></i>
+            <span class="nav-item">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="../url_shortener/url.html">
+            <i class="fas fa-link"></i>
+            <span class="nav-item">URL Shortener</span>
+          </a>
+        </li>
+        <li>
+          <a href="../codeeditor/code.html">
+            <i class="fas fa-code"></i>
+            <span class="nav-item">Code Editor</span>
+          </a>
+        </li>
+        <li>
+          <a href="../cv_maker/resume.html">
+            <i class="fas fa-sun"></i>
+            <span class="nav-item">Resume Builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="../todolist/todolist.html">
+            <i class="fas fa-list"></i>
+            <span class="nav-item">To-Do List</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main">
+      <div id="editor"></div>
+      <button onclick="runCode()">Run Code</button>
+      <select id="language">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+      </select>
+      <div id="result"></div>
+    </section>
+  </div>
+
+  <script>
+    require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor/min/vs' } });
+
+    require(['vs/editor/editor.main'], function () {
+      const editor = monaco.editor.create(document.getElementById('editor'), {
+        value: 'console.log("Hello, World!");',
+        language: 'javascript',
+        theme: 'vs-dark',
+      });
+
+      window.runCode = function () {
+        const code = editor.getValue();
+        const language = document.getElementById('language').value;
+        socket.emit('runCode', code, language);
+      };
+    });
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('codeResult', (result) => {
+      const resultContainer = document.getElementById('result');
+      const resultObj = JSON.parse(result);
+      if (resultObj.error) {
+        resultContainer.innerHTML = `<div style="color: red;">Error: ${resultObj.result}</div>`;
+      } else {
+        resultContainer.innerHTML = `<div style="color: green;">Result: ${resultObj.result}</div>`;
+      }
+    });
+  </script>
+</body>
+
+</html>
